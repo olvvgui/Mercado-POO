@@ -1,12 +1,15 @@
 public class Produto {
-    private static int id = 0;
+    private static int contadorId = 0;
+    
+    private int id;
     private String nome;
     private Double valor;
     private int qtdEstoque;
     private boolean emFalta;
 
     public Produto(String nome, Double valor, int qtdEstoque, boolean emFalta) {
-        id += 1;
+        contadorId += 1;
+        id = contadorId;
         this.nome = nome;
         this.valor = valor;
         this.qtdEstoque = qtdEstoque;
