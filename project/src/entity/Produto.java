@@ -1,3 +1,5 @@
+package entity;
+
 public class Produto {
     private static int contadorId = 0;
     
