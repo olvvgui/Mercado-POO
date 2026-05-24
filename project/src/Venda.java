@@ -15,7 +15,7 @@ public class Venda {
         data = LocalDateTime.now();
     }
 
-    void adicionarItem(Produto produto, int quantidade) {
+    void adicionarItem(int quantidade) {
 
     }
 
@@ -24,7 +24,7 @@ public class Venda {
     }
 
     Double calcularValorTotal(Double valor, int quantidade) {
-        return valor * quantidade;
+
     }
 
 
