@@ -1,12 +1,20 @@
+import javax.crypto.Cipher;
+import javax.crypto.spec.SecretKeySpec;
+import java.nio.charset.StandardCharsets;
+import java.util.Base64;
+
 public class Usuario {
     private static int contadorId = 0;
-    private int id;
+    private Integer id;
 
     private String nome;
     private String email;
     private String senhaCriptografada;
     private PerfilUsuario perfil;
     private boolean ativo;
+
+    private static final String ALGORITMO = "AES";
+    private static final byte[] CHAVE_SECRETA = "ChaveSecretaUsuarios".getBytes(StandardCharsets.UTF_8);
 
     public Usuario(String nome, String email, String senhaNormal, PerfilUsuario perfil) {
         ativo = true;
@@ -19,31 +27,48 @@ public class Usuario {
     }
 
     private String criptografarSenha(String senha) {
-        // TODO: criptografar senha
-        /*
-         * usar a  API padrão de criptografia do Java (JCA) com o
-         * algoritmo AES (Advanced Encryption Standard).
-         */
-        return senha;
+        try {
+            SecretKeySpec chaveSecreta = new SecretKeySpec(CHAVE_SECRETA, ALGORITMO);
+            Cipher cipher = Cipher.getInstance(ALGORITMO);
+            cipher.init(Cipher.ENCRYPT_MODE, chaveSecreta);
+
+            byte[] bytesCriptografados = cipher.doFinal(senha.getBytes(StandardCharsets.UTF_8));
+
+            return Base64.getEncoder().encodeToString(bytesCriptografados);
+        } catch (Exception e) {
+            throw new RuntimeException("Erro ao criptografar a senha", e);
+        }
     }
 
-    private String descriptografarSenha(String senha) {
-        return "not implemented";
+    private String descriptografarSenha(String senhaCriptografada) {
+        try {
+            SecretKeySpec chaveSecreta = new SecretKeySpec(CHAVE_SECRETA, ALGORITMO);
+            Cipher cipher = Cipher.getInstance(ALGORITMO);
+            cipher.init(Cipher.DECRYPT_MODE, chaveSecreta);
+
+            byte[] bytesDecodificados = Base64.getDecoder().decode(senhaCriptografada);
+            byte[] bytesDescriptografados = cipher.doFinal(bytesDecodificados);
+
+            return new String(bytesDescriptografados, StandardCharsets.UTF_8);
+        } catch (Exception e) {
+            throw new RuntimeException("Erro ao descriptografar a senha", e);
+        }
     }
 
     public boolean autenticar_usuario(String senha) {
-        /**
-         * TODO: CRIPTOGRAFAR SENHA, COMPARAR COM A SENHA CRIPTOGRAFADA E RETORNAR TRUE OR FALSE
-         */
-        return false;
+        String tentativaCriptografada = criptografarSenha(senha);
+        return tentativaCriptografada.equals(this.senhaCriptografada);
     }
 
+    // Ok
     public void AtualizarDados(String nome, String email) {
         this.nome = nome;
         this.email = email;
     }
 
+    // Ok
     public void desativar() {
         this.ativo = false;
     }
+
 }
