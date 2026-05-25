@@ -9,13 +9,13 @@ public class Produto {
     private int qtdEstoque;
     private boolean emFalta;
 
-    public Produto(String nome, Double valor, int qtdEstoque, boolean emFalta) {
+    public Produto(String nome, Double valor, int qtdEstoque) {
         contadorId += 1;
         id = contadorId;
         this.nome = nome;
         this.valor = valor;
         this.qtdEstoque = qtdEstoque;
-        this.emFalta = emFalta;
+        this.emFalta = false;
     }
 
 
