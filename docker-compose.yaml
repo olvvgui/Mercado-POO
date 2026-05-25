@@ -1,0 +1,13 @@
+services:
+  db-mercado:
+    image: postgres:latest
+    container_name: pg-mercado-container
+    environment:
+      POSTGRES_PASSWORD: senha123
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata_mercado:/var/lib/postgresql:Z
+
+volumes:
+  pgdata_mercado:
