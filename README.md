@@ -1,5 +1,8 @@
 # Sistema De Gestão de Produtos
-
+Alunos: 
+* Guilherme Oliveira de Miranda
+* Christian Pereira
+* Lucas Rocha
 ## Primeira Entrega:
 
 <!-- TOC -->
