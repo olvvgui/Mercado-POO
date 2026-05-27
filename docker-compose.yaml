@@ -1,13 +1,15 @@
 services:
   db-mercado:
-    image: postgres:latest
+    image: postgres:18
     container_name: pg-mercado-container
     environment:
       POSTGRES_PASSWORD: senha123
+      
+      PGDATA: /var/lib/postgresql/data/pgdata
     ports:
       - "5432:5432"
     volumes:
-      - pgdata_mercado:/var/lib/postgresql:Z
-
-volumes:
-  pgdata_mercado:
+     
+      - ./.pgdata:/var/lib/postgresql:Z
+    
+      - ./script.sql:/docker-entrypoint-initdb.d/script.sql
