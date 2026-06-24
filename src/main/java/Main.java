@@ -1,6 +1,7 @@
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import javax.swing.JOptionPane;
 
 public class Main {
     public static void main(String[] args) {
@@ -26,4 +27,19 @@ public class Main {
             e.printStackTrace();
         }
     }
+
+    /*public static void principal(String[] args) {
+        String[] opcoes = {"Cadastrar Produto", "Realizar Venda", "Sair"};
+        int escolha = JOptionPane.showOptionDialog(null,
+                "Bem-vindo ao Sistema do Mercado",
+                "Menu Principal",
+                JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE,
+                null, opcoes, opcoes[0]);
+
+        if (escolha == 0) {
+            String nomeProduto = JOptionPane.showInputDialog("Digite o nome do Produto:");
+            JOptionPane.showMessageDialog(null, "Produto " + nomeProduto + " cadastrado com sucesso!");
+        }
+
+    }*/
 }

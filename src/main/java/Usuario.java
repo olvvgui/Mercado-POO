@@ -1,8 +1,10 @@
-import javax.crypto.Cipher;
-import javax.crypto.spec.SecretKeySpec;
 import java.nio.charset.StandardCharsets;
 import java.util.Base64;
 
+import javax.crypto.Cipher;
+import javax.crypto.spec.SecretKeySpec;
+
+// Ok
 public class Usuario {
     private static int contadorId = 0;
     private Integer id;
@@ -16,6 +18,7 @@ public class Usuario {
     private static final String ALGORITMO = "AES";
     private static final byte[] CHAVE_SECRETA = "ChaveSecretaUsuarios".getBytes(StandardCharsets.UTF_8);
 
+    // Ok
     public Usuario(String nome, String email, String senhaNormal, PerfilUsuario perfil) {
         ativo = true;
         contadorId += 1;
@@ -26,6 +29,7 @@ public class Usuario {
         this.perfil = perfil;
     }
 
+    // Ok
     private String criptografarSenha(String senha) {
         try {
             SecretKeySpec chaveSecreta = new SecretKeySpec(CHAVE_SECRETA, ALGORITMO);
@@ -40,6 +44,7 @@ public class Usuario {
         }
     }
 
+    // Ok
     private String descriptografarSenha(String senhaCriptografada) {
         try {
             SecretKeySpec chaveSecreta = new SecretKeySpec(CHAVE_SECRETA, ALGORITMO);
@@ -55,6 +60,8 @@ public class Usuario {
         }
     }
 
+
+    // Ok
     public boolean autenticar_usuario(String senha) {
         String tentativaCriptografada = criptografarSenha(senha);
         return tentativaCriptografada.equals(this.senhaCriptografada);
@@ -71,40 +78,49 @@ public class Usuario {
         this.ativo = false;
     }
 
+    // Ok
     public boolean isAtivo() {
         return ativo;
     }
 
+    // Ok
     public void setAtivo(boolean ativo) {
         this.ativo = ativo;
     }
 
+    // Ok
     public PerfilUsuario getPerfil() {
         return perfil;
     }
 
+    // Ok
     public void setPerfil(PerfilUsuario perfil) {
         this.perfil = perfil;
     }
 
+    // Ok
     public String getSenhaCriptografada() {
-        return senhaCriptografada;
+        return this.senhaCriptografada;
     }
 
+    // Ok
     public void setSenhaCriptografada(String senhaCriptografada) {
         this.senhaCriptografada = senhaCriptografada;
     }
 
+    // Ok
     public String getEmail() {
-        return email;
+        return this.email;
     }
 
+    // Ok
     public void setEmail(String email) {
         this.email = email;
     }
 
+    // Ok
     public String getNome() {
-        return nome;
+        return this.nome;
     }
 
     public void setNome(String nome) {
@@ -112,7 +128,7 @@ public class Usuario {
     }
 
     public Integer getId() {
-        return id;
+        return this.id;
     }
 
     public void setId(Integer id) {

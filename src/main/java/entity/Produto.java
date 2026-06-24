@@ -1,49 +1,55 @@
 package entity;
 
+// Ok
 public class Produto {
     private static int contadorId = 0;
     
-    private int id;
+    private Integer id;
     private String nome;
     private Double valor;
-    private int qtdEstoque;
-    private boolean emFalta;
+    private Integer qtdEstoque;
+    public boolean emFalta;
 
     public Produto(String nome, Double valor, int qtdEstoque) {
         contadorId += 1;
-        id = contadorId;
+        this.id = contadorId;
         this.nome = nome;
         this.valor = valor;
         this.qtdEstoque = qtdEstoque;
         this.emFalta = false;
     }
 
-
-    public int getId() {
-        return id;
+    // Ok
+    public Integer getId() {
+        return this.id;
     }
 
+    // Ok
     public String getNome() {
-        return nome;
+        return this.nome;
     }
 
+    // Ok
     public void setNome(String nome) {
         this.nome = nome;
     }
 
+    // Ok
     public Double getValor() {
-        return valor;
+        return this.valor;
     }
 
-
-    public int getQtdEstoque() {
-        return qtdEstoque;
+    // Ok
+    public Integer getQtdEstoque() {
+        return this.qtdEstoque;
     }
 
+    // Ok
     public boolean isEmFalta() {
-        return emFalta;
+        return this.emFalta;
     }
 
+    // Ok
     public void atualizarEstoque(int quantidade, int opcao) {
         /* voce passa a quantidade e a opção
          *      1. aumentar:  soma com o estoque todo
@@ -71,6 +77,7 @@ public class Produto {
 
     }
 
+    // Ok
     public void atualizarValor(double valor, int opcao) {
 
         double temp = this.valor;
