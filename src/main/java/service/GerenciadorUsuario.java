@@ -1,9 +1,14 @@
+package service;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import entity.PerfilUsuario;
+import entity.Usuario;
+
 // Ok
-public class GerenciadorUsuario {
+public class GerenciadorUsuario{
     private final List<Usuario> usuariosRepositorio;
 
     // Ok

@@ -1,4 +1,4 @@
-create table produto (
+create table produtos (
     id SERIAL PRIMARY KEY,
     nome VARCHAR(100) NOT NULL,
     valor NUMERIC(10, 2) NOT NULL DEFAULT 0.00,
@@ -6,7 +6,7 @@ create table produto (
     em_falta BOOLEAN DEFAULT FALSE
 );
 
-CREATE TABLE usuario (
+CREATE TABLE usuarios (
     id SERIAL PRIMARY KEY,
     nome VARCHAR(100) NOT NULL,
     email VARCHAR(255) NOT NULL UNIQUE,
@@ -15,7 +15,7 @@ CREATE TABLE usuario (
     ativo BOOLEAN DEFAULT true
 );
 
-CREATE TABLE venda (
+CREATE TABLE vendas (
     id SERIAL PRIMARY KEY,
     data_hora TIMESTAMPTZ DEFAULT NOW(),
     valor NUMERIC(10, 2) NOT NULL DEFAULT 0.00,

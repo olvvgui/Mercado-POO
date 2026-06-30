@@ -1,3 +1,5 @@
+package entity;
+
 // Ok
 public enum PerfilUsuario {
     GERENTE,

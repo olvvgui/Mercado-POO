@@ -59,7 +59,7 @@ public class GerenciadorDeVendas {
                 }
             }
 
-            // Salvar os produtos da venda e subtrair do Estoque
+            // Salva os produtos da venda e subtrai do Estoque
             try (PreparedStatement stmtItem = conn.prepareStatement(sqlItem);
                  PreparedStatement stmtEstoque = conn.prepareStatement(sqlAtualizarEstoque)) {
 
@@ -82,7 +82,7 @@ public class GerenciadorDeVendas {
                 stmtEstoque.executeBatch();
             }
 
-            // 5. Confirma a transação no banco de dados se tudo deu certo
+            // Confirma a transação no BD se deu certo
             conn.commit();
             System.out.println("Venda " + vendaIdGerada + " fechada e salva com sucesso!");
 

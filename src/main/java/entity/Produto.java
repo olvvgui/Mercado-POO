@@ -1,10 +1,13 @@
 package entity;
 
 // Ok
+
+import exception.EstoqueInsuficienteException;
+
 public class Produto {
     private static int contadorId = 0;
     
-    private Integer id;
+    private final Integer id;
     private String nome;
     private Double valor;
     private Integer qtdEstoque;
@@ -50,7 +53,7 @@ public class Produto {
     }
 
     // Ok
-    public void atualizarEstoque(int quantidade, int opcao) {
+    public void atualizarEstoque(int quantidade, int opcao) throws EstoqueInsuficienteException {
         /* voce passa a quantidade e a opção
          *      1. aumentar:  soma com o estoque todo
          *      2. diminuir: subtrai qtd do estoque
@@ -61,17 +64,25 @@ public class Produto {
 
         switch (opcao) {
             case 1:
+
                 this.qtdEstoque += quantidade;
                 break;
             case 2:
+
+                if (quantidade > this.qtdEstoque) throw new EstoqueInsuficienteException(this.nome, this.qtdEstoque);
                 this.qtdEstoque -= quantidade;
                 break;
             case 3:
+
                 this.qtdEstoque = quantidade;
                 break;
             default:
                 break;
         }
+
+        if (this.qtdEstoque == 0) this.emFalta = true;
+        
+
         System.out.printf("O estoque estava com %d %s's\n\n", temp, this.nome);
         System.out.printf("E agora está com %d %s's\n\n", this.qtdEstoque, this.nome);
 

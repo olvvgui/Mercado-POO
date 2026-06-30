@@ -1,3 +1,5 @@
+package entity;
+
 import java.nio.charset.StandardCharsets;
 import java.util.Base64;
 
@@ -5,11 +7,8 @@ import javax.crypto.Cipher;
 import javax.crypto.spec.SecretKeySpec;
 
 // Ok
-public class Usuario {
+public class Usuario extends Pessoa{
     private static int contadorId = 0;
-    private Integer id;
-
-    private String nome;
     private String email;
     private String senhaCriptografada;
     private PerfilUsuario perfil;
@@ -20,13 +19,12 @@ public class Usuario {
 
     // Ok
     public Usuario(String nome, String email, String senhaNormal, PerfilUsuario perfil) {
-        ativo = true;
-        contadorId += 1;
-        id = contadorId;
-        this.nome = nome;
+        super(++contadorId, nome);
         this.email = email;
         this.senhaCriptografada = criptografarSenha(senhaNormal);
         this.perfil = perfil;
+        this.ativo = true;
+
     }
 
     // Ok
@@ -118,18 +116,10 @@ public class Usuario {
         this.email = email;
     }
 
-    // Ok
-    public String getNome() {
-        return this.nome;
-    }
-
     public void setNome(String nome) {
         this.nome = nome;
     }
 
-    public Integer getId() {
-        return this.id;
-    }
 
     public void setId(Integer id) {
         this.id = id;
