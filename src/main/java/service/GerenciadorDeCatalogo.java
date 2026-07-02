@@ -1,7 +1,5 @@
 package service;
 
-import entity.Produto;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -10,6 +8,9 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+
+import entity.Produto;
+import entity.dto.ProdutoDTO;
 
 public class GerenciadorDeCatalogo {
 
@@ -34,13 +35,7 @@ public class GerenciadorDeCatalogo {
 
             stmt.executeUpdate();
 
-            ResultSet rs = stmt.getGeneratedKeys();
-            Integer idGerado = null;
-            if (rs.next()) {
-                idGerado = rs.getInt(1);
-            }
-
-            return new Produto(idGerado, nome, valor, quantidade);
+            return new Produto(nome, valor, quantidade);
 
         } catch (SQLException e) {
             System.err.println("Erro ao cadastrar produto: " + e.getMessage());
@@ -71,8 +66,8 @@ public class GerenciadorDeCatalogo {
     }
 
     // Ok
-    public Produto excluirProduto(Integer id) {
-        Produto produtoExcluido = buscarProdutoPorId(id);
+    public ProdutoDTO excluirProduto(Integer id) {
+        ProdutoDTO produtoExcluido = buscarProdutoPorId(id);
 
         if (produtoExcluido != null) {
             String sql = "DELETE FROM produtos WHERE id = ?";
@@ -93,8 +88,8 @@ public class GerenciadorDeCatalogo {
     }
 
     // Ok
-    public List<Produto> pesquisarProduto() {
-        List<Produto> produtos = new ArrayList<>();
+    public List<ProdutoDTO> pesquisarProduto() {
+        List<ProdutoDTO> produtos = new ArrayList<>();
         String sql = "SELECT id, nome, valor, quantidade FROM produtos";
 
         try (Connection conn = getConnection();
@@ -107,7 +102,7 @@ public class GerenciadorDeCatalogo {
                 Double valor = rs.getDouble("valor");
                 int quantidade = rs.getInt("quantidade");
 
-                Produto produto = new Produto(id, nome, valor, quantidade);
+                ProdutoDTO produto = new ProdutoDTO(id, nome, valor, quantidade);
                 produtos.add(produto);
             }
 
@@ -119,7 +114,7 @@ public class GerenciadorDeCatalogo {
     }
 
     // Ok
-    private Produto buscarProdutoPorId(Integer id) {
+    private ProdutoDTO buscarProdutoPorId(Integer id) {
         String sql = "SELECT id, nome, valor, quantidade FROM produtos WHERE id = ?";
 
         try (Connection conn = getConnection();
@@ -131,7 +126,7 @@ public class GerenciadorDeCatalogo {
                     String nome = rs.getString("nome");
                     Double valor = rs.getDouble("valor");
                     int quantidade = rs.getInt("quantidade");
-                    return new Produto(id, nome, valor, quantidade);
+                    return new ProdutoDTO(id, nome, valor, quantidade);
                 }
             }
         } catch (SQLException e) {

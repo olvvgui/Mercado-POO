@@ -1,7 +1,7 @@
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import javax.swing.JOptionPane;
+//import javax.swing.JOptionPane;
 
 public class Main {
     public static void main(String[] args) {
@@ -24,7 +24,7 @@ public class Main {
             }
         } catch (SQLException e) {
             System.err.println("Erro ao conectar ao banco de dados:");
-            e.printStackTrace();
+            e.printStackTrace(System.err);
         }
     }
 

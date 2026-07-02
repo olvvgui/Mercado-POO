@@ -15,7 +15,7 @@ public class Usuario extends Pessoa{
     private boolean ativo;
 
     private static final String ALGORITMO = "AES";
-    private static final byte[] CHAVE_SECRETA = "ChaveSecretaUsuarios".getBytes(StandardCharsets.UTF_8);
+    private static final byte[] CHAVE_SECRETA = "ChaveSecreta1234".getBytes(StandardCharsets.UTF_8);
 
     // Ok
     public Usuario(String nome, String email, String senhaNormal, PerfilUsuario perfil) {
